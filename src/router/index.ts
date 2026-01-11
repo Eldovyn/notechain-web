@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
+import Coba from '@/views/Coba.vue'
 
 const routes = [
-    { path: '/', component: Home, meta: { showNavbar: true } },
+    // { path: '/', component: Home, meta: { showNavbar: true } },
+    { path: '/coba', component: Coba, meta: { showNavbar: false } },
 ]
 
 const router = createRouter({
