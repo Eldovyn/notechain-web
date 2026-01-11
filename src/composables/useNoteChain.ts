@@ -3,6 +3,7 @@ import { defineChain, getContract, readContract, prepareContractCall, sendTransa
 import type { Account } from "thirdweb/wallets";
 import { client } from "@/utils/clientThirdWeb";
 import { noteChainAbi } from "@/abi/NoteChain.abi";
+import { cards } from "@/stores/card";
 
 export const hardhatLocal = defineChain({
     id: 31337,
@@ -30,7 +31,6 @@ const noteChain = getContract({
 });
 
 export function useNoteChain(account: Ref<Account | undefined | null>) {
-    const notes = ref<Note[]>([]);
     const loadingNotes = ref(false);
     const writing = ref(false);
     const txHash = ref<string>("");
@@ -52,7 +52,7 @@ export function useNoteChain(account: Ref<Account | undefined | null>) {
 
             const data = await readContract(call);
 
-            notes.value = (data as any[]).map((n: any) => ({
+            cards.value = (data as any[]).map((n: any) => ({
                 id: n.id,
                 title: n.title,
                 content: n.content,
@@ -105,13 +105,13 @@ export function useNoteChain(account: Ref<Account | undefined | null>) {
         () => account.value?.address,
         (addr) => {
             if (addr) refreshNotes();
-            else notes.value = [];
+            else cards.value = [];
         },
         { immediate: true }
     );
 
     return {
-        notes,
+        cards,
         loadingNotes,
         writing,
         txHash,

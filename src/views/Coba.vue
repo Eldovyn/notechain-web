@@ -9,7 +9,7 @@ const { account, isConnecting, autoReconnect } = useThirdwebWallet();
 const isConnected = computed(() => !!account.value?.address);
 const address = computed(() => account.value?.address ?? "");
 
-const { notes, loadingNotes, writing, txHash, contractError, refreshNotes, createNote } = useNoteChain(account);
+const { cards: notes, loadingNotes, writing, txHash, contractError, refreshNotes, createNote } = useNoteChain(account);
 
 const fTitle = ref("");
 const fContent = ref("");
