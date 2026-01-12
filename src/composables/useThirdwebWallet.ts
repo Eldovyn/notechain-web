@@ -54,7 +54,7 @@ function getWalletConnectConfig() {
         projectId,
         showQrModal: true,
         appMetadata: {
-            name: "tulis.aja",
+            name: "note.chain",
             url: window.location.origin,
             description: "Notes dapp",
             logoUrl: `${window.location.origin}/logo.png`,
