@@ -7,3 +7,8 @@ declare interface Card {
     createdAt: bigint;
     updatedAt: bigint;
 }
+
+declare interface NoteInput {
+    title: string;
+    content: string;
+}

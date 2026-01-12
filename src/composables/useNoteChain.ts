@@ -11,7 +11,7 @@ export const hardhatLocal = defineChain({
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
 });
 
-export const NOTECHAIN_ADDRESS = "0x0165878A594ca255338adfa4d48449f69242Eb8F" as const;
+export const NOTECHAIN_ADDRESS = import.meta.env.VITE_SC_ADDRESS;
 
 const noteChain = getContract({
     client,
@@ -41,8 +41,7 @@ export function useNoteChain(account: Ref<Account | undefined | null>) {
             } as any;
 
             const data = await readContract(call);
-
-            cards.value = (data as any[]).map((n: any) => ({
+            const dataCard = (data as any[]).map((n: any) => ({
                 id: n.id,
                 title: n.title,
                 content: n.content,
@@ -51,6 +50,8 @@ export function useNoteChain(account: Ref<Account | undefined | null>) {
                 createdAt: n.createdAt,
                 updatedAt: n.updatedAt,
             }));
+
+            cards.value = dataCard;
         } catch (e: any) {
             contractError.value = e?.message ?? String(e);
         } finally {
@@ -82,8 +83,6 @@ export function useNoteChain(account: Ref<Account | undefined | null>) {
             });
 
             txHash.value = res.transactionHash;
-
-            await refreshNotes();
         } catch (e: any) {
             contractError.value = e?.message ?? String(e);
         } finally {
