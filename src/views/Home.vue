@@ -133,7 +133,7 @@ const onSubmit = async () => {
                 </div>
 
                 <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Card v-for="card in notes" :key="card.id"
+                    <Card v-for="card in notes" :key="String(card.id)"
                         class="group cursor-pointer border bg-white rounded-2xl shadow-sm transition hover:shadow-md hover:-translate-y-px flex flex-col h-full"
                         @click="openDialog(card)">
                         <CardHeader class="pb-3 overflow-hidden">
