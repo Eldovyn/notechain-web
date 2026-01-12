@@ -13,16 +13,6 @@ export const hardhatLocal = defineChain({
 
 export const NOTECHAIN_ADDRESS = "0x0165878A594ca255338adfa4d48449f69242Eb8F" as const;
 
-export type Note = {
-    id: bigint;
-    title: string;
-    content: string;
-    summary: string;
-    tags: string[];
-    createdAt: bigint;
-    updatedAt: bigint;
-};
-
 const noteChain = getContract({
     client,
     chain: hardhatLocal,
